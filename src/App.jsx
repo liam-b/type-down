@@ -1,6 +1,10 @@
-import { Segment, Grid, Input, Menu } from 'semantic-ui-react'
+import { Segment, Grid, Input, Menu, Dropdown, Button, Icon, Divider} from 'semantic-ui-react'
 import React from 'react'
 import './App.css'
+
+import Project from './Project'
+import TextEditor from './editor/TextEditor'
+import EditorMenu from './editor/EditorMenu'
 
 export default class App extends React.Component {
   constructor() {
@@ -15,39 +19,38 @@ export default class App extends React.Component {
 
     return (
       <div className='App'>
-        {/* <Grid columns='equal' divided secondary> */}
-          {/* <Grid.Column width={3}> */}
-            {/* <Segment> */}
+        <Grid columns='equal' divided secondary fluid>
+          <Grid.Column width={3} fluid>
+            {/* <Segment fluid> */}
 
             <Menu vertical secondary fluid>
-              {/* <Menu.Item> */}
-                {/* <Menu.Header className='ui large'>Products</Menu.Header> */}
                 <Menu.Item>
                   <Input placeholder='Search...' />
                 </Menu.Item>
-                <Menu.Item name='my menu drtbgyhunjmk,' />
-                <Menu.Item
-                  name='account'
-                  active={activeItem === 'account'}
-                  onClick={this.setActiveItem}
-                />
-                <Menu.Item
-                  name='other'
-                  active={activeItem === 'other'}
-                  onClick={this.setActiveItem}
-                />
-              {/* </Menu.Item> */}
+
+                <Project name='Psychology' activeItem={activeItem} setActiveItem={this.setActiveItem} />
+                <Project name='English Language' activeItem={activeItem} setActiveItem={this.setActiveItem} />
+                <Project name='Chemistry' activeItem={activeItem} setActiveItem={this.setActiveItem} />
             </Menu>
 
+            <div className='button-wrapper'>
+              <Button icon labelPosition='left'>
+                <Icon name='plus circle' />
+                New Project
+              </Button>
+            </div>
+
             {/* </Segment> */}
-          {/* </Grid.Column> */}
+          </Grid.Column>
 
-          {/* <Grid.Column width={3}> */}
-            other thing
-          {/* </Grid.Column> */}
-        {/* </Grid> */}
-
-        
+          <Grid.Column width={12}>
+            {/* <Button.Group> */}
+            <EditorMenu />
+            <Divider />
+            <br/>
+            <TextEditor />
+          </Grid.Column>
+        </Grid>
 
       </div>
     )
